@@ -1,9 +1,12 @@
 import duckdb
-import os
+conn = duckdb.connect('github_pipeline.duckdb')
 
-db_path = os.path.abspath("github_pipeline.duckdb")
+# Query issues
+df = conn.execute("""
+    SELECT title, state, created_at 
+    FROM github_data_20251122103306.issues 
+    LIMIT 10
+""").fetchdf()
+print(df)
 
-con = duckdb.connect(db_path)
-
-tables = con.execute("SHOW TABLES").fetchall()
-print(tables)
+conn.close()
