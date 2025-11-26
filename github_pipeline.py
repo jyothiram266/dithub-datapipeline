@@ -23,7 +23,7 @@ def load_airflow_events() -> None:
     pipeline = dlt.pipeline(
         "github_events", destination='duckdb', dataset_name="airflow_events"
     )
-    data = github_repo_events("apache", "airflow", access_token="")
+    data = github_repo_events("apache", "airflow")
     print(pipeline.run(data))
     # if you uncomment this, it does not load the same events again
     # data = github_repo_events("apache", "airflow", access_token="")

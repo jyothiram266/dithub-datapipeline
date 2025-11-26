@@ -3,9 +3,7 @@ conn = duckdb.connect('github_pipeline.duckdb')
 
 # Query issues
 df = conn.execute("""
-    SELECT title, state, created_at 
-    FROM github_data_20251122103306.issues 
-    LIMIT 10
+SELECT * FROM _dlt_pipeline_state;
 """).fetchdf()
 print(df)
 

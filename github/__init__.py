@@ -67,7 +67,7 @@ def github_reactions(
 
 @dlt.source(max_table_nesting=2)
 def github_repo_events(
-    owner: str, name: str, access_token: Optional[str] = None
+    owner: str, name: str, access_token: str = dlt.secrets.value
 ) -> DltResource:
     """Gets events for repository `name` with owner `owner` incrementally.
 
